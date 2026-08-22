@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Katrīna Saučuka — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EEF2F6;
+    --paper-2:#E4EAF1;
+    --ink:#132038;
+    --ink-soft:#2A3A56;
+    --muted:#5C6C84;
+    --line:rgba(19,32,56,0.14);
+    --line-strong:rgba(19,32,56,0.28);
+    --blue:#2B6CB0;
+    --teal:#0E9E93;
+    --white:#FBFCFD;
+    --radius:2px;
+    --max:920px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      linear-gradient(var(--line) 1px, transparent 1px) 0 0/40px 40px,
+      linear-gradient(90deg, var(--line) 1px, transparent 1px) 0 0/40px 40px,
+      var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+  }
+
+  a{color:inherit;}
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .mono{
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--blue);
+    display:inline-block;
+  }
+
+  /* ===== HEADER / NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(238,242,246,0.88);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:var(--max); margin:0 auto; padding:16px 28px;
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  nav .name{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:15px;
+  }
+  nav ul{list-style:none; display:flex; gap:26px; margin:0; padding:0;}
+  nav a{
+    text-decoration:none;
+    font-size:13px;
+    color:var(--ink-soft);
+    font-family:'JetBrains Mono', monospace;
+    letter-spacing:0.02em;
+  }
+  nav a:hover{color:var(--blue);}
+  .nav-links{display:flex;}
+  @media (max-width:640px){
+    .nav-links{display:none;}
+  }
+
+  /* ===== HERO ===== */
+  .hero{padding:76px 0 40px;}
+  .hero h1{
+    font-size:clamp(40px, 7vw, 64px);
+    line-height:0.98;
+  }
+  .hero .role{
+    margin-top:14px;
+    font-size:clamp(17px, 2.4vw, 21px);
+    color:var(--ink-soft);
+    max-width:560px;
+  }
+  .hero-meta{
+    margin-top:28px;
+    display:flex; flex-wrap:wrap; gap:12px;
+  }
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px;
+    border:1px solid var(--line-strong);
+    border-radius:999px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    text-decoration:none;
+    color:var(--ink);
+    background:var(--white);
+    transition:border-color .15s ease, transform .15s ease;
+  }
+  .pill:hover{border-color:var(--blue); transform:translateY(-1px);}
+  .pill.accent{
+    background:var(--ink);
+    color:var(--paper);
+    border-color:var(--ink);
+  }
+  .pill.accent:hover{background:var(--blue); border-color:var(--blue);}
+
+  /* ===== PIPELINE DIAGRAM ===== */
+  .diagram{margin:56px 0 8px;}
+  .flow{
+    display:flex;
+    align-items:stretch;
+    gap:0;
+    flex-wrap:wrap;
+  }
+  .flow-node{
+    flex:1 1 220px;
+    min-width:200px;
+    background:var(--white);
+    border:1px solid var(--line-strong);
+    border-radius:3px;
+    padding:18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  .node-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.04em;
+    color:var(--blue);
+  }
+  .node-title{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:15px;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.3;
+  }
+  .flow-arrow{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:56px;
+    min-width:36px;
+  }
+  .flow-arrow span{
+    position:relative;
+    width:100%;
+    height:1.5px;
+    background:repeating-linear-gradient(90deg, var(--blue) 0 6px, transparent 6px 13px);
+  }
+  .flow-arrow span::after{
+    content:"";
+    position:absolute;
+    right:0; top:50%;
+    width:7px; height:7px;
+    border-right:1.5px solid var(--blue);
+    border-bottom:1.5px solid var(--blue);
+    transform:translateY(-50%) rotate(-45deg);
+  }
+  @media (max-width:640px){
+    .flow{flex-direction:column;}
+    .flow-arrow{width:100%; height:28px;}
+    .flow-arrow span{width:1.5px; height:100%; margin:0 auto;
+      background:repeating-linear-gradient(180deg, var(--blue) 0 6px, transparent 6px 13px);}
+    .flow-arrow span::after{
+      right:50%; top:100%; transform:translate(50%,-100%) rotate(45deg);
+    }
+  }
+
+  /* ===== SECTION SHELL ===== */
+  section{padding:64px 0; scroll-margin-top:88px;}
+  section + section{border-top:1px solid var(--line);}
+  .section-head{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    margin-bottom:36px; gap:20px; flex-wrap:wrap;
+  }
+  .section-head h2{font-size:clamp(24px,3.4vw,32px);}
+  .fig{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  /* ===== ABOUT ===== */
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1.5fr;
+    gap:44px;
+  }
+  @media (max-width:720px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{color:var(--ink-soft); margin:0 0 14px;}
+  .tag-block{margin-top:6px;}
+  .tag-block h3{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--muted);
+    font-weight:500;
+    margin-bottom:12px;
+  }
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px;}
+  .tag{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    padding:6px 11px;
+    background:var(--white);
+    border:1px solid var(--line-strong);
+    border-radius:2px;
+    color:var(--ink-soft);
+  }
+
+  /* ===== PROJECTS ===== */
+  .project{
+    border:1px solid var(--line-strong);
+    background:var(--white);
+    padding:32px;
+    margin-bottom:24px;
+    position:relative;
+  }
+  .project::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:4px;
+    background:var(--blue);
+  }
+  .project-top{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    gap:16px; margin-bottom:14px; flex-wrap:wrap;
+  }
+  .project h3{font-size:22px;}
+  .project .desc{color:var(--ink-soft); max-width:640px; margin:0 0 18px;}
+  .project .stack{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px;}
+  .project .stack span{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    color:var(--teal);
+    background:rgba(14,158,147,0.08);
+    padding:5px 10px;
+    border-radius:2px;
+  }
+  .project-links{display:flex; gap:12px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    text-decoration:none;
+    padding:10px 18px;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    background:transparent;
+    transition:all .15s ease;
+  }
+  .btn:hover{background:var(--ink); color:var(--paper);}
+  .btn.ghost{border-color:var(--line-strong); color:var(--muted);}
+  .btn.ghost:hover{border-color:var(--ink); color:var(--ink); background:transparent;}
+
+  .project-note{
+    margin-top:18px; padding-top:16px;
+    border-top:1px dashed var(--line-strong);
+    font-size:14px; color:var(--muted);
+  }
+
+  /* ===== EXPERIENCE TIMELINE ===== */
+  .timeline{position:relative; padding-left:28px;}
+  .timeline::before{
+    content:"";
+    position:absolute; left:4px; top:6px; bottom:6px;
+    width:1px;
+    background:var(--line-strong);
+  }
+  .tl-item{position:relative; padding-bottom:30px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";
+    position:absolute; left:-28px; top:5px;
+    width:9px; height:9px;
+    border-radius:50%;
+    background:var(--paper);
+    border:2px solid var(--blue);
+  }
+  .tl-date{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--muted);
+    margin-bottom:4px;
+  }
+  .tl-role{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:17px;}
+  .tl-org{color:var(--ink-soft); font-size:14.5px; margin-bottom:8px; font-style:italic;}
+  .tl-item ul{margin:0; padding-left:18px; color:var(--muted); font-size:14.5px;}
+  .tl-item li{margin-bottom:3px;}
+
+  /* ===== EDUCATION ===== */
+  .edu-grid{display:grid; gap:18px;}
+  .edu-item{
+    display:flex; justify-content:space-between; gap:16px;
+    padding:16px 0; border-bottom:1px solid var(--line);
+    flex-wrap:wrap;
+  }
+  .edu-item:last-child{border-bottom:none;}
+  .edu-name{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:16px;}
+  .edu-school{color:var(--muted); font-size:14px;}
+  .edu-date{font-family:'JetBrains Mono', monospace; font-size:13px; color:var(--muted); white-space:nowrap;}
+
+  /* ===== MOTIVATION LETTER ===== */
+  .letter{
+    background:var(--white);
+    border:1px solid var(--line-strong);
+    padding:44px;
+    position:relative;
+  }
+  .letter::before{
+    content:"";
+    position:absolute; top:18px; right:18px;
+    width:34px; height:34px;
+    border-top:1px solid var(--line-strong);
+    border-right:1px solid var(--line-strong);
+  }
+  .letter p{margin:0 0 16px; color:var(--ink-soft);}
+  .letter .to{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px; color:var(--muted);
+    margin-bottom:22px;
+  }
+  .letter .sig{
+    margin-top:28px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+  }
+  .letter strong{color:var(--ink); font-weight:600;}
+  @media (max-width:640px){ .letter{padding:26px;} }
+
+  /* ===== FOOTER ===== */
+  footer{padding:56px 0 80px;}
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:flex-end;
+    flex-wrap:wrap; gap:24px;
+  }
+  footer h2{font-size:clamp(26px,4vw,38px); max-width:480px;}
+  .footer-links{display:flex; flex-direction:column; gap:10px; align-items:flex-end;}
+  @media (max-width:560px){ .footer-links{align-items:flex-start;} }
+  .footer-links a{
+    font-family:'JetBrains Mono', monospace;
+    font-size:13.5px;
+    text-decoration:none;
+    color:var(--ink-soft);
+    border-bottom:1px solid transparent;
+  }
+  .footer-links a:hover{color:var(--blue); border-color:var(--blue);}
+  .foot-note{
+    margin-top:50px; padding-top:20px; border-top:1px solid var(--line);
+    font-family:'JetBrains Mono', monospace; font-size:11.5px; color:var(--muted);
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="name mono">K. SAUČUKA</div>
+    <ul class="nav-links">
+      <li><a href="#about" class="js-scroll">Par mani</a></li>
+      <li><a href="#projects" class="js-scroll">Projekti</a></li>
+      <li><a href="#experience" class="js-scroll">Pieredze</a></li>
+      <li><a href="#letter" class="js-scroll">Vēstule</a></li>
+      <li><a href="#contact" class="js-scroll">Kontakti</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" style="border-top:none;">
+    <div class="eyebrow">Portfolio · 2026</div>
+    <h1>Katrīna<br>Saučuka</h1>
+    <p class="role">Pašmācības ceļā apgūstu automatizācijas un AI risinājumu izstrādi — no idejas līdz strādājošam rīkam. Šobrīd meklēju iespēju attīstīt šīs prasmes profesionālā vidē.</p>
+    <div class="hero-meta">
+      <a class="pill accent" href="https://canva.link/gtahqjvyg5emz3b" target="_blank" rel="noopener">Lasīt motivācijas vēstuli</a>
+      <a class="pill accent" href="https://canva.link/gq01at70y6wku06" target="_blank" rel="noopener">Skatīt CV</a>
+      <a class="pill" href="mailto:katesaucuka@gmail.com">katesaucuka@gmail.com</a>
+      <a class="pill" href="tel:+37129601707">+371 29601707</a>
+      <span class="pill" style="cursor:default;">Rīga, LV</span>
+    </div>
+
+    <div class="diagram">
+      <div class="flow">
+        <div class="flow-node">
+          <span class="node-label">01 — IEVADE</span>
+          <span class="node-title">Nesakārtoti PDF / Excel dati</span>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"><span></span></div>
+        <div class="flow-node">
+          <span class="node-label">02 — APSTRĀDE</span>
+          <span class="node-title">Python skripts + AI analīze</span>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"><span></span></div>
+        <div class="flow-node">
+          <span class="node-label">03 — REZULTĀTS</span>
+          <span class="node-title">Sakārtots Excel pārskats</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <h2>Par mani</h2>
+      <span class="fig">FIG. 00</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <div class="tag-block">
+          <h3>Valodas</h3>
+          <div class="tags">
+            <span class="tag">Latviešu — dzimtā</span>
+            <span class="tag">Angļu — B1/B2</span>
+            <span class="tag">Krievu — A1/A2</span>
+          </div>
+        </div>
+        <div class="tag-block">
+          <h3>Prasmes</h3>
+          <div class="tags">
+            <span class="tag">Programmēšana ar AI</span>
+            <span class="tag">MS Office (Word, PowerPoint, Excel)</span>
+            <span class="tag">Precizitāte un atbildība</span>
+            <span class="tag">Ātra jaunu iemaņu apguve</span>
+            <span class="tag">Komandas darbs</span>
+            <span class="tag">Komunikācija</span>
+          </div>
+        </div>
+      </div>
+      <div>
+         <p>Biznesa Vadības Koledžas studente ar praktisku, pašmācības ceļā iegūtu pieredzi automatizācijas risinājumu (Excel automatizācija) un mājaslapu izveidē, izmantojot AI rīkus.</p>
+        <p>Ātri apgūstu jaunas sistēmas un rīkus, esmu precīza, atbildīga un labi strādāju gan patstāvīgi, gan komandā. Šobrīd strādāju arī pie idejas automatizēt PDF konspektēšanu, lai atvieglotu mācību procesu.</p>
+        <p>Interesējos par mākslīgā intelekta praktisko pielietojumu un vēlos šīs zināšanas attīstīt profesionālā vidē, apvienojot to ar studijām.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projekti</h2>
+      <span class="fig">FIG. 01 – 02</span>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <span class="fig">FIG. 01</span>
+          <h3>PDF → Excel automatizācija ar AI</h3>
+        </div>
+      </div>
+      <p class="desc">Rīks, kas automātiski nolasa PDF dokumentus — neatkarīgi no to struktūras — un, izmantojot Claude AI, izvelk svarīgāko informāciju: dokumenta tipu, datumu, summu, iesaistītās puses un līdz pat 7 svarīgākajiem punktiem vai nosacījumiem. Dati automātiski tiek sakārtoti Excel failā, katram dokumenta tipam atsevišķā lapā.</p>
+      <div class="stack">
+        <span>Python</span><span>pdfplumber</span><span>Anthropic Claude API</span><span>openpyxl</span>
+      </div>
+      <div class="project-links">
+        <a class="btn" href="https://github.com/katrinasaucuka/PDF_Exel" target="_blank" rel="noopener">Skatīt kodu uz GitHub →</a>
+      </div>
+      <div class="project-note">Izmanto AI, nevis fiksētus noteikumus — tāpēc strādā ar jebkuru, iepriekš nezināmu dokumenta formātu.</div>
+    </div>
+
+    <div class="project">
+      <div class="project-top">
+        <div>
+          <span class="fig">FIG. 02</span>
+          <h3>Excel Palīgs</h3>
+        </div>
+      </div>
+      <p class="desc">Darbvirsmas lietotne ar vienkāršu ievades formu, kas paātrina un padara precīzāku datu ievadi Excel failos. Lietotājam vairs nav jāatceras, kurā rindā vai kolonnā ierakstīt informāciju — programma pati atrod pareizo vietu un sakārto ierakstus hronoloģiskā secībā.</p>
+      <div class="stack">
+        <span>Python</span><span>tkinter</span><span>openpyxl</span>
+      </div>
+      <div class="project-links">
+        <a class="btn" href="https://github.com/katrinasaucuka/Exel_paligs" target="_blank" rel="noopener">Skatīt kodu uz GitHub →</a>
+      </div>
+      <div class="project-note">Strādā pilnībā lokāli — dati nekad netiek sūtīti internetā.</div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-head">
+      <h2>Darba pieredze</h2>
+      <span class="fig">FIG. 03</span>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">2026. jūn. — pašlaik</div>
+        <div class="tl-role">Pārdevēja-konsultante</div>
+        <div class="tl-org">JD Sports / SIA "Marketing Investment Group Latvia"</div>
+        <ul>
+          <li>Klientu apkalpošana: komunikācija ar klientiem un viņu vajadzību noskaidrošana</li>
+          <li>Darbs zem spiediena spraigos periodos</li>
+          <li>Komandas darbs kopīgu mērķu sasniegšanai</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2025. sept. — 2026. maijs</div>
+        <div class="tl-role">Kasiere</div>
+        <div class="tl-org">AS Kesko Senukai Latvia</div>
+        <ul>
+          <li>Klientu apkalpošana dinamiskā mazumtirdzniecības vidē ar lielu klientu plūsmu</li>
+          <li>Darbs ar kases sistēmām un POS termināļiem, nodrošinot precīzu naudas apriti</li>
+          <li>Datu ievade un pārbaude ar augstu precizitāti</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024. okt. — 2025. aug.</div>
+        <div class="tl-role">Palīgstrādniece</div>
+        <div class="tl-org">SIA DIDRO</div>
+        <ul>
+          <li>Pasākumu organizēšana un klientu apkalpošana</li>
+          <li>Darba vietas kārtības uzturēšana un operacionālie uzdevumi</li>
+          <li>Komunikācija ar klientiem un kolēģiem, risinot praktiskus jautājumus</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2024. jūl.</div>
+        <div class="tl-role">Viesmīle</div>
+        <div class="tl-org">SIA Provinces sēta</div>
+        <ul>
+          <li>Klientu apkalpošana augstā tempā, nodrošinot patīkamu klientu pieredzi</li>
+          <li>Darbs dinamiskā komandā viesmīlības nozarē</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">2023. jūl.</div>
+        <div class="tl-role">Palīgstrādniece</div>
+        <div class="tl-org">SIA Plīvurpuķe</div>
+        <ul>
+          <li>Dekorāciju veidošana un kārtošana, izmantojot radošo domāšanu</li>
+          <li>Rūpīgs darbs ar trausliem priekšmetiem, uzturot darba vietu kārtībā</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-head">
+      <h2>Izglītība</h2>
+      <span class="fig">FIG. 04</span>
+    </div>
+    <div class="edu-grid">
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Profesionālā augstākā izglītība</div>
+          <div class="edu-school">Biznesa Vadības Koledža</div>
+        </div>
+        <div class="edu-date">2025 — pašlaik</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Vidējā vispārīgā izglītība</div>
+          <div class="edu-school">V. Plūdoņa Kuldīgas vidusskola</div>
+        </div>
+        <div class="edu-date">2022 — 2025</div>
+      </div>
+      <div class="edu-item">
+        <div>
+          <div class="edu-name">Pamatizglītība</div>
+          <div class="edu-school">Māteru Jura Kazdangas pamatskola</div>
+        </div>
+        <div class="edu-date">2012 — 2022</div>
+      </div>
+    </div>
+
+    <div class="tag-block" style="margin-top:34px;">
+      <h3>Kursi</h3>
+      <div class="tags">
+        <span class="tag">Jauno līderu programma — 2024</span>
+        <span class="tag">Brīvprātīgo darba akadēmija — 2025</span>
+      </div>
+    </div>
+    <div class="tag-block">
+      <h3>Citi</h3>
+      <div class="tags">
+        <span class="tag">B kategorijas autovadītāja apliecība</span>
+        <span class="tag">Brīvprātīgais darbs — Kopums MAD Liepāja</span>
+      </div>
+    </div>
+    <div class="tag-block">
+      <h3>Hobiji</h3>
+      <div class="tags">
+        <span class="tag">Gleznošana</span>
+        <span class="tag">Video veidošana</span>
+        <span class="tag">Fotogrāfēšana</span>
+        <span class="tag">Programmēšana</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOTIVATION LETTER -->
+  <section id="letter">
+    <div class="section-head">
+      <h2>Motivācijas vēstule</h2>
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <a class="btn ghost" href="https://canva.link/gtahqjvyg5emz3b" target="_blank" rel="noopener">Atvērt Canva versiju →</a>
+      </div>
+    </div>
+    <div class="letter">
+      <div class="to">Kam: SIA "AZWAY" · Vakance: AI, IT un biznesa procesu automatizācijas speciālists/-e</div>
+      <p>Godātie SIA "AZWAY" pārstāvji,</p>
+      <p>Ar lielu interesi piesakos uz vakanci "AI, IT un biznesa procesu automatizācijas speciālists/-e". Meklējat cilvēku ilgtermiņa sadarbībai, kurš patstāvīgi mācās, eksperimentē un spēj novest ideju līdz reāli strādājošam rezultātam — tieši tā es strādāju, un tieši to vēlos darīt arī profesionālā vidē.</p>
+      <p>Esmu Biznesa Vadības Koledžas studente, un, lai gan mana formālā izglītība nav tieši saistīta ar programmēšanu, pēdējā laikā esmu pati, pašmācības ceļā, izveidojusi vairākus praktiskus risinājumus, kas apliecina manu spēju strādāt tieši ar tāda veida uzdevumiem, kādus piedāvājat:</p>
+      <p><strong>Excel automatizācijas rīks</strong> — pamanīju, ka man aizņem daudz laika manuāli meklēt un ievadīt datus Excel failā, tāpēc izveidoju risinājumu, kas šo procesu automatizē un ievērojami ietaupa laiku.</p>
+      <p><strong>PDF datu apstrādes rīks</strong> — izstrādāju risinājumu, kas nolasa PDF materiālus un automātiski pārnes svarīgāko informāciju Excel failā. Ideja radās no vēlmes atvieglot mācību procesu — lai svarīgo informāciju būtu vieglāk uztvert un lai ietaupītu laiku, kas citādi tiktu tērēts materiālu manuālai izskatīšanai.</p>
+      <p>Šobrīd strādāju arī pie savas mājaslapas izveides, kas kalpos kā portfolio šiem un turpmākiem projektiem — vēlos, lai tā pierāda manu praktisko pieredzi vēl skaidrāk, nekā to var izdarīt CV.</p>
+      <p>Papildus tam man ir arī praktiska darba pieredze klientu apkalpošanā un darbā zem spiediena dinamiskā vidē (JD Sports, AS Kesko Senukai Latvia), kas iemācīja man strādāt precīzi, atbildīgi un ātri pielāgoties jauniem rīkiem un situācijām — tās pašas īpašības, kas nepieciešamas arī jaunu tehnoloģiju un sistēmu apgūšanā.</p>
+      <p>Mani aizrauj mākslīgā intelekta praktiskais pielietojums, un es regulāri sekoju jaunumiem AI rīku jomā, izmantojot tos ne tikai teorētiski, bet reāliem, praktiskiem uzdevumiem. Esmu pārliecināta, ka spēja patstāvīgi identificēt problēmu un atrast tai risinājumu — tieši tā, kā to esmu darījusi ar saviem Excel un PDF rīkiem — ir tas, ko meklējat kandidātā.</p>
+      <p>Nākotnē vēlos attīstīt savas prasmes vēl tālāk un izstrādāt programmas, kas palīdz cilvēkiem ietaupīt laiku un atvieglot manuālo darbu ikdienā — tieši tāpēc uzskatu, ka šī vakance man būtu ideāla iespēja augt tieši šajā virzienā. Vēlos šo pieredzi un zināšanas attīstīt tieši jūsu uzņēmumā, ilgtermiņā, un ar laiku kļūt par speciālistu, uz kuru varat paļauties uzņēmumu grupas digitālās vides attīstībā.</p>
+      <p>Priecāšos par iespēju tikties personīgi un pastāstīt vairāk par saviem izstrādātajiem risinājumiem.</p>
+      <p class="sig">Ar cieņu,<br>Katrīna Saučuka<br>+371 29601707 · katesaucuka@gmail.com</p>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <h2>Šis ir sākums — īstais darbs vēl priekšā.</h2>
+      <div class="footer-links">
+        <a href="mailto:katesaucuka@gmail.com">katesaucuka@gmail.com</a>
+        <a href="tel:+37129601707">+371 29601707</a>
+        <a href="https://github.com/katrinasaucuka" target="_blank" rel="noopener">github.com/katrinasaucuka</a>
+      </div>
+    </div>
+    <div class="foot-note">
+      <span>Rīga, Latvija</span>
+      <span>Katrīna Saučuka — Portfolio, 2026</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.js-scroll').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var target = document.querySelector(this.getAttribute('href'));
+      if(target){
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+</script>
+</body>
+</html>
